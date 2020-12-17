@@ -63,7 +63,7 @@ module ActiveRecord
           end
 
           def through_scope
-            scope = through_reflection.klass.unscoped
+            scope = through_reflection.klass.where(nil)
             options = reflection.options
 
             values = reflection_scope.values

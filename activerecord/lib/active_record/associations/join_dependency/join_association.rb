@@ -60,7 +60,7 @@ module ActiveRecord
               end
             end
 
-            joins << join_type.new(table, Arel::Nodes::On.new(nodes))
+            joins << join_type.new(@table.name == table.name ? @table : table, Arel::Nodes::On.new(nodes))
 
             if others && !others.empty?
               joins.concat arel.join_sources

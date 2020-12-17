@@ -21,7 +21,7 @@ module ActiveRecord
       def scope(association)
         klass = association.klass
         reflection = association.reflection
-        scope = klass.unscoped
+        scope = klass.where(nil)
         owner = association.owner
         chain = get_chain(reflection, association, scope.alias_tracker)
 

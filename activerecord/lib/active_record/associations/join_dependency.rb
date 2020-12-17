@@ -231,7 +231,9 @@ module ActiveRecord
               raise EagerLoadPolymorphicError.new(reflection)
             end
 
-            JoinAssociation.new(reflection, build(right, reflection.klass))
+            res = JoinAssociation.new(reflection, build(right, reflection.klass))
+            res.table = reflection.klass.where(nil).unscope(:order).arel.as(res.table_name) if reflection.klass.current_scope
+            res
           end
         end
 

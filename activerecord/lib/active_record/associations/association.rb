@@ -154,7 +154,7 @@ module ActiveRecord
         extensions = klass.default_extensions | reflection.extensions
 
         if reflection.scope
-          extensions |= reflection.scope_for(klass.unscoped, owner).extensions
+          extensions |= reflection.scope_for(klass.where(nil), owner).extensions
         end
 
         extensions
